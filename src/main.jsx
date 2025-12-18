@@ -1,9 +1,17 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client"; // ← これが必要
-import App from "./App.jsx";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
+import {
+  QueryClient,
+  QueryClientProvider
+} from "@tanstack/react-query";
+
+// QueryClientを1つ作る
+const queryClient = new QueryClient();
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <QueryClientProvider client={queryClient}>
     <App />
-  </StrictMode>
+  </QueryClientProvider>
 );
