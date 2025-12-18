@@ -24,10 +24,11 @@ function Practice17() {
   const addMutation = useMutation({
     mutationFn: addUser,
     onSuccess: () => {
-      // ✅ 「users のキャッシュは古い」と伝える → 再取得が走る
+      console.log("追加成功 → users を invalidate");
       queryClient.invalidateQueries({ queryKey: ["users"] });
     },
-  });
+});
+
 
   if (usersQuery.isLoading) return <p>Loading...</p>;
   if (usersQuery.isError) return <p>Error</p>;
